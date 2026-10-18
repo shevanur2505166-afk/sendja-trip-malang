@@ -35,7 +35,7 @@ if(!f||!/^image\/(jpeg|png|webp)$/.test(f.type))return toast('Pilih foto JPG/PNG
 if(f.size>5e6)return toast('Maksimal 5 MB');
 const h=await hash(await f.arrayBuffer());if(P.some(p=>p.h===h))return toast('Foto ini sudah pernah diunggah');
 if(P.filter(p=>p.e===u.email&&p.d===id&&Date.now()-p.at<864e5).length>=3)return toast('Batas 3 foto per destinasi per hari');
-P.push({id:code('F'),e:u.email,d:id,c:e.target.c.value,h,th:await thumb(f),s:'wait',at:Date.now()});sv('p',P);toast('Terkirim, menunggu verifikasi admin');route()}
+const fid=code('F'),T=ls('t');P.push({id:fid,e:u.email,d:id,c:e.target.c.value,h,th:await thumb(f),s:'ok',at:Date.now()});T.push({e:u.email,v:5,why:'Foto '+dd(id).n,ref:fid,at:Date.now()});sv('p',P);sv('t',T);toast('Foto diterima! +5 Koin Jelajah');route()}
 
 function notify(){const u=me();if(!u)return;const P=ls('p'),p=P.find(x=>x.e===u.email&&x.s==='ok'&&!x.seen);if(!p)return;p.seen=1;sv('p',P);const d=dd(p.d);
 modal(`<h2>Yeay! Kamu berhasil menjelajahi ${d.n}!</h2><p>${d.d}</p><p>${d.h}</p><p><b>+5 Koin Jelajah</b> · Saldo: ${coins(u.email)}</p><p><i>${d.t}</i></p><p><a class="btn" href="#/destinasi/${d.id}" onclick="closeM()">Baca Informasi Lengkap</a> <a class="btn alt" href="#/destinasi/${nx(d.id).id}" onclick="closeM()">Lihat Destinasi Berikutnya</a></p>`)}
@@ -79,6 +79,6 @@ function setS(k,id,v){const A=ls(k),x=A.find(a=>(a.id||a.code)===id);if(k==='r'&
 
 const R={'':home,destinasi:dests,peta,trip,eco,reward,akun,admin};
 function nav(){const u=me(),l=[['','Beranda'],['destinasi','Destinasi'],['peta','Peta Perjalanan'],['trip','Open Trip'],['eco','Eco-Points'],['reward','Reward'],['akun',u?'Akun':'Login/Daftar']];$('#nav').innerHTML=l.map(x=>`<a href="#/${x[0]}" onclick="document.body.classList.remove('open')">${x[1]}</a>`).join('');
-$('#foot').innerHTML=`<b>SENDJA TRIP — Nawak Jadoel Malang</b><p>Malang, Jawa Timur · <a href="https://wa.me/${CFG.wa}">WhatsApp</a></p><p>Ikuti perjalanan kami, temukan cerita di setiap sudut Malang, dan jadilah bagian dari gerakan wisata yang lebih bermakna.</p><p>${Object.entries(CFG.social).map(([k,v])=>v?`<a href="${v}" target="_blank" rel="noopener">${k}</a>`:`${k} (tautan belum diatur)`).join(' · ')}</p>`}
+$('#foot').innerHTML=`<b>SENDJA TRIP — Nawak Jadoel Malang</b><p>Malang, Jawa Timur · <a href="https://wa.me/${CFG.wa}">WhatsApp</a></p><p>Ikuti perjalanan kami, temukan cerita di setiap sudut Malang, dan jadilah bagian dari gerakan wisata yang lebih bermakna.</p><p>${Object.entries(CFG.social).map(([k,v])=>`${k}: ${v||'belum diatur'}`).join(' · ')}
 function route(){const[p,id]=location.hash.slice(2).split('/');$('#app').innerHTML=(p==='destinasi'&&id?()=>detail(id):R[p]||home)();nav();if(p==='peta')initMap();notify();scrollTo(0,0)}
 addEventListener('hashchange',route);route();

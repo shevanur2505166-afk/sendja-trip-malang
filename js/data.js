@@ -1,5 +1,5 @@
 // ===== EDIT DATA DI SINI =====
-const CFG={wa:"6280000000000",admin:["admin@sendja.test"],social:{Instagram:"",TikTok:"",Facebook:""}};
+const CFG={wa:"081330962344",admin:["sendja.trip@gmail,com"],social:{Instagram:"sendjatrip.id",TikTok:"sendjatrip.id",Facebook:"sendjatrip.id"}};
 // Koordinat = perkiraan awal. VERIFIKASI di OpenStreetMap lalu perbaiki. Foto: taruh di /img lalu isi "img".
 const DEST=[
 {id:"um",n:"Universitas Negeri Malang (Titik Kumpul)",k:"Titik Kumpul",ll:[-7.9608,112.6186],img:"",d:"Registrasi, pembukaan, dan titik akhir perjalanan.",h:"[ISI info terverifikasi]",a:"Check-in, name tag, goodie bag, kartu pengalaman SENDJA",t:"Hadir sesuai jadwal registrasi 06.45.",u:"-"},
