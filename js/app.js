@@ -78,7 +78,7 @@ function appr(id,ok){const P=ls('p'),p=P.find(x=>x.id===id);if(!p||p.s!=='wait')
 function setS(k,id,v){const A=ls(k),x=A.find(a=>(a.id||a.code)===id);if(k==='r'&&v==='Ditolak'&&x.s!=='Ditolak'){const T=ls('t');T.push({e:x.e,v:x.c,why:'Refund '+id,at:Date.now()});sv('t',T)}x.s=v;sv(k,A);route()}
 
 const R={'':home,destinasi:dests,peta,trip,eco,reward,akun,admin};
-function nav(){const u=me(),l=[['','Beranda'],['destinasi','Destinasi'],['peta','Peta Perjalanan'],['trip','Open Trip'],['eco','Eco-Points'],['reward','Reward'],['akun',u?'Akun':'Login/Daftar']];$('#nav').innerHTML=l.map(x=>`<a href="#/${x[0]}" onclick="document.body.classList.remove('open')">${x[1]}</a>`).join('');
-$('#foot').innerHTML=`<b>SENDJA TRIP — Nawak Jadoel Malang</b><p>Malang, Jawa Timur · <a href="https://wa.me/${CFG.wa}">WhatsApp</a></p><p>Ikuti perjalanan kami, temukan cerita di setiap sudut Malang, dan jadilah bagian dari gerakan wisata yang lebih bermakna.</p><p>${Object.entries(CFG.social).map(([k,v])=>`${k}: ${v||'belum diatur'}`).join(' · ')}
+function nav(){const u=me(),l=[['','Beranda'],['destinasi','Destinasi'],['peta','Peta Perjalanan'],['trip','Open Trip'],['eco','Eco-Points'],['reward','Reward'],['akun',u?'Akun':'Login/Daftar']];$('#nav').innerHTML=l.map(x=>`<a href="#/${x[0]}" onclick="document.body.classList.remove('open')">${x[1]}</a>`).join('');}
+$('#foot').innerHTML=`<b>SENDJA TRIP — Nawak Jadoel Malang</b><p>Malang, Jawa Timur · <a href="https://wa.me/${CFG.wa}">WhatsApp</a></p><p>Ikuti perjalanan kami, temukan cerita di setiap sudut Malang, dan jadilah bagian dari gerakan wisata yang lebih bermakna.</p><p>${Object.entries(CFG.social).map(([k,v])=>`${k}: ${v||'belum diatur'}`).join(' · ')}</p>`;
 function route(){const[p,id]=location.hash.slice(2).split('/');$('#app').innerHTML=(p==='destinasi'&&id?()=>detail(id):R[p]||home)();nav();if(p==='peta')initMap();notify();scrollTo(0,0)}
 addEventListener('hashchange',route);route();
