@@ -12,13 +12,13 @@ const phot=d=>`<div class="ph" style="${d.img?`background-image:url(${d.img})`:'
 const dcard=d=>`<a class="card" href="#/destinasi/${d.id}">${phot(d)}<h3>${d.n}</h3><p>${d.d}</p><span class="btn">Jelajahi Destinasi</span></a>`;
 const sec=(t,b,c='')=>`<section class="${c}"><div class="wrap"><h2>${t}</h2>${b}</div></section>`;
 
-function home(){return `<section class="hero"><h1>Njelajah Ngalam? Bukan. Nawak Jadoel: Njelajah Malang Tempo Doeloe.</h1><p>Telusuri kampung warna-warni, museum, pasar, batik dan topeng Malangan, hingga kawasan heritage Kayutangan dalam satu hari perjalanan.</p><p><a class="btn" href="#/peta">Jelajahi Perjalanan</a> <a class="btn ghost" href="#/trip">Pesan Open Trip</a></p></section>`
+function home(){return `<section class="hero"><h1>Nawak Jadoel : Njelajah Malang Tempo Doeloe.</h1><p>Telusuri kampung warna-warni, museum, pasar, batik dan topeng Malangan, hingga kawasan heritage Kayutangan dalam satu hari perjalanan.</p><p><a class="btn" href="#/peta">Jelajahi Perjalanan</a> <a class="btn ghost" href="#/trip">Pesan Open Trip</a></p></section>`
 +sec('Tentang SENDJA TRIP','<div class="grid"><div><h3>EXPLORE CULTURE</h3>Mengenal sejarah dan budaya Malang secara interaktif.</div><div><h3>SUPPORT LOCAL</h3>Memberdayakan UMKM, pemandu, dan pengemudi angkot lokal.</div><div><h3>TRAVEL SUSTAINABLY</h3>Wisata yang menjaga lingkungan lewat Eco-Points.</div></div>')
 +sec('Destinasi Pilihan','<div class="grid">'+DEST.map(dcard).join('')+'</div>','sand')
 +sec('Peta Jelajah Malang','<p>Ikuti rute animatif dari Universitas Negeri Malang hingga kembali ke titik awal.</p><a class="btn" href="#/peta">Buka Peta</a>')
 +sec('Koin Jelajah','<p>Upload foto di setiap destinasi → disetujui admin → dapat <b>5 Koin Jelajah</b> per foto. Tukar koin dengan diskon, merchandise, atau kupon undian.</p><a class="btn" href="#/reward">Lihat Reward</a>','sand')
-+sec('Eco-Points','<p>Sampahmu, Dampak Baikmu: gerakan pengumpulan sampah plastik bersama bank sampah lokal.</p><a class="btn alt" href="#/eco">Pelajari Eco-Points</a>')
-+sec('Testimoni','<span class="demo">Contoh Data — bukan testimoni asli</span><p>“Perjalanan yang seru dan bermakna!” — Peserta contoh</p>','sand')
++sec('Eco-Points','<p>Sampahmu, Dampak Baikmu : gerakan pengumpulan sampah plastik bersama bank sampah lokal.</p><a class="btn alt" href="#/eco">Pelajari Eco-Points</a>')
++sec('Testimoni','</span><p>“Perjalanan yang seru dan bermakna bagi saya karena bisa berlibur sekaligus belajar sejarah!” — Baskara</p>','sand')
 +sec('Mulai Petualanganmu',`<a class="btn" href="#/akun">Daftar / Login</a>`)}
 
 const dests=()=>sec('Jelajahi Destinasi','<div class="grid">'+DEST.map(dcard).join('')+'</div>');
