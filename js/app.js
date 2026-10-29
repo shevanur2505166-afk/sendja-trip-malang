@@ -48,7 +48,7 @@ const pts=[...DEST.map(d=>d.ll),DEST[0].ll],mk=DEST.map((d,i)=>L.marker(d.ll,{ic
 let path=pts,real=false;
 try{const r=await fetch('https://router.project-osrm.org/route/v1/driving/'+pts.map(p=>p[1]+','+p[0]).join(';')+'?overview=full&geometries=geojson'),j=await r.json();path=j.routes[0].geometry.coordinates.map(c=>[c[1],c[0]]);real=true;$('#sum').textContent=`Estimasi ${(j.routes[0].distance/1000).toFixed(0)} km, ±${Math.round(j.routes[0].duration/60)} menit berkendara (tanpa pemberhentian).`}catch(e){$('#sum').textContent='Rute jalan belum termuat; garis lurus sementara, jarak tidak dihitung.'}
 const line=L.polyline([],{color:'#8E2F3F',weight:4}).addTo(m),van=L.marker(path[0],{icon:L.divIcon({html:'<span style="font-size:24px">🚐</span>',className:''})}).addTo(m);let i=0,t=null;const step=Math.max(1,Math.floor(path.length/300));
-mv.pause=()=>{clearInterval(t);t=null};mv.play=()=>{if(t)return;if(i>=path.length-1)mv.replay();else t=setInterval(()=>{i=Math.min(i+step,path.length-1);line.setLatLngs(path.slice(0,i+1));van.setLatLng(path[i]);if(i>=path.length-1)mv.pause()},40)};
+mv.pause=()=>{clearInterval(t);t=null};mv.play=()=>{if(t)return;if(i>=path.length-1)mv.replay();else t=setInterval(()=>{i=Math.min(i+step,path.length-1);line.setLatLngs(path.slice(0,i+1));van.setLatLng(path[i]);if(i>=path.length-1)mv.pause()},100)};
 mv.replay=()=>{mv.pause();i=0;line.setLatLngs([]);mv.play()};mv.focus=k=>{m.setView(DEST[k].ll,14);mk[k].openPopup()};if(real)m.fitBounds(L.latLngBounds(path));mv.play()}
 
 function trip(){const p=PKG[0],dts=dates(),rem=dt=>p.cap-ls('b').filter(b=>b.pk===p.id&&b.date===dt&&b.s!=='Dibatalkan').reduce((a,b)=>a+b.q,0);
